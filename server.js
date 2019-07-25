@@ -6,7 +6,7 @@ const cors = require('cors');
 
 //INIT EXPRESS
 const app = express();
-const PORT = 3000;
+// const PORT = 3000;
 
 //body-parser
 app.use(cors());
@@ -29,4 +29,4 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 //API Router
 app.use('/v1', require ('./routes/routes'));
-app.listen(PORT, () => console.log(`Server is up and running on port ${PORT}`));
+app.listen(proccess.env.PORT || 3000, () => console.log(`Server is up and running on port ${PORT}`));
