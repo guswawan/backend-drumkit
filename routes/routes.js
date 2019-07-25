@@ -28,18 +28,18 @@ const upload = multer({storage: storage});
 // === END === //
 
 // === CLOUDINARY === //
-cloudinary.config({
-  cloud_name: 'asdfghj',
-  api_key: '419825895451199',
-  api_secret: 'wgyzwQ9jp5tEE_jW3XYkwwLkd38'
-})
+// cloudinary.config({
+//   cloud_name: 'asdfghj',
+//   api_key: '419825895451199',
+//   api_secret: 'wgyzwQ9jp5tEE_jW3XYkwwLkd38'
+// })
 
 
 //routes
-router.post('/create', upload.single('image'),product_controller.create_product);
+router.post('/create', upload.any(),product_controller.create_product);
 router.get('/products', product_controller.all_product);
 /*router.get('/products', product_controller.agt_product);*/
-router.post('/delete', product_controller.delete_product);
+router.post('/delete/:id', product_controller.delete_product);
 
 
 module.exports = router; 

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
 const ProductSchema = new mongoose.Schema({
     productName: {
@@ -12,9 +12,13 @@ const ProductSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    // imagePath: [mongoose.Schema.Types.Mixed]
-    imagePath: {
+    imagePath: [mongoose.Schema.Types.Mixed],
+    imageId: {
         type: String
+    },
+    post_date: {
+        type: Date,
+        default: Date.now
     }
 });
 
