@@ -1,7 +1,9 @@
 const cloudinary = require('cloudinary');
+const multer = require('multer');
+const cloudinaryStorage = require('multer-storage-cloudinary');
 
 
-// === CLOUDINARY === //
+// === S3 CLOUDINARY === //
 cloudinary.config({
   cloud_name: 'asdfghj',
   api_key: '419825895451199',
@@ -9,11 +11,12 @@ cloudinary.config({
 })
 
 
-exports.uploads = (files) => {
-    return new Promise(resolve => {
-        cloudinary.uploader.upload(files, (result) => {
-            resolve({url: result.url, id: result.public_id})
-            
-        }, {resource_type: "auto"})
-    })
-}
+const storage = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: "products",
+    allowedFormats: ["jpg","jpeg", "png"],
+});
+
+const upload = multer({storage:storage});
+
+module.exports = upload;
